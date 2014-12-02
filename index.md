@@ -11,7 +11,7 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 --- 
 ## Money Ball 魔球
-![width](https://www.ocf.berkeley.edu/~superb/pics/moneyball.jpg)
+![](https://www.ocf.berkeley.edu/~superb/pics/moneyball.jpg)
 
 --- 
 ## Data Analysis in Sports
