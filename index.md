@@ -10,12 +10,17 @@ widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 --- 
-## Money Ball 魔球
 ![](https://www.ocf.berkeley.edu/~superb/pics/moneyball.jpg)
-
 --- 
+
+## Money Ball：魔球
+
+---
+
 ## Data Analysis in Sports
 
 
 ---
-## 
+
+## Sabermatrics：賽伯計量學
+
