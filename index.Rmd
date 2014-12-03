@@ -10,18 +10,25 @@ widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 --- 
+
+## 說到運動資料的分析，你會想到...
 ![](https://www.ocf.berkeley.edu/~superb/pics/moneyball.jpg)
-
---- 
-
-## Money Ball：魔球
-
----
-
-## Data Analysis in Sports
-
 
 ---
 
 ## Sabermatrics：賽伯計量學
+![](https://bostonu.qualtrics.com/CP/Graphic.php?IM=IM_2h31EGcJG5TEfPf)
+
+--- 
+
+## Data Analysis in Sports
+- MLB
+- NBA
+- NFL
+- World Cup 2014
+- ...
+
+---
+
+## 
 
