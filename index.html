@@ -43,7 +43,7 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>說到運動資料的分析，你會想到...</h2>
+    <h2>說到運動資料的分析，你會想到的是...</h2>
   </hgroup>
   <article data-timings="">
     <p><img src="https://www.ocf.berkeley.edu/%7Esuperb/pics/moneyball.jpg" alt=""></p>
@@ -54,18 +54,17 @@
 
 <slide class="" id="slide-2" style="background:;">
   <hgroup>
-    <h2>Sabermatrics：賽伯計量學</h2>
+    <h2>還是...？</h2>
   </hgroup>
   <article data-timings="">
-    <p><img src="https://bostonu.qualtrics.com/CP/Graphic.php?IM=IM_2h31EGcJG5TEfPf" alt=""></p>
-
+    
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="" id="slide-3" style="background:;">
   <hgroup>
-    <h2>Data Analysis in Sports</h2>
+    <h2>實務上，</h2>
   </hgroup>
   <article data-timings="">
     <ul>
@@ -73,13 +72,115 @@
 <li>NBA</li>
 <li>NFL</li>
 <li>World Cup 2014</li>
-<li class='..</li>'></ul>
+<li><del>CPBL</del></li>
+</ul>
+
+<p>別人在上太空，我們還在殺豬公。</p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Sabermatrics：賽伯計量學</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="https://bostonu.qualtrics.com/CP/Graphic.php?IM=IM_2h31EGcJG5TEfPf" alt=""></p>
+
+<p>Bill James</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>前人寫扣，後人乘涼</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(lahman)
+</code></pre>
+
+<pre><code>## Error in library(lahman): there is no package called &#39;lahman&#39;
+</code></pre>
+
+<pre><code class="r">library(dplyr)
+</code></pre>
+
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;
+## 
+## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union
+</code></pre>
+
+<pre><code class="r">head(Batting)
+</code></pre>
+
+<pre><code>## Error in head(Batting): 找不到物件 &#39;Batting&#39;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>前人寫扣，後人繼續乘涼</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(pitchRx)
+</code></pre>
+
+<pre><code>## Error in library(pitchRx): there is no package called &#39;pitchRx&#39;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>前人寫扣，後人不能一直乘涼</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>自己的國家自己救</p>
+
+<p>自己的 crawler/analyzer 自己寫！</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>用Ｒ寫爬蟲的屠龍刀</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">## RSelenium + phantomJS
+library(XML)
+library(RSelenium)
+
+pJS &lt;- phantom()
+Sys.sleep(5)
+remDr &lt;- remoteDriver(browserName = &#39;phantomjs&#39;)
+remDr$open()
+
+url &lt;- &#39;http://www.cpbl.com.tw/stats_hr.aspx&#39;
+remDr$navigate(url)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
   <article data-timings="">
     
   </article>
@@ -92,26 +193,56 @@
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='說到運動資料的分析，你會想到...'>
+        data-slide=1 title='說到運動資料的分析，你會想到的是...'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Sabermatrics：賽伯計量學'>
+        data-slide=2 title='還是...？'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Data Analysis in Sports'>
+        data-slide=3 title='實務上，'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title=''>
+        data-slide=4 title='Sabermatrics：賽伯計量學'>
          4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='前人寫扣，後人乘涼'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='前人寫扣，後人繼續乘涼'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='前人寫扣，後人不能一直乘涼'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='用Ｒ寫爬蟲的屠龍刀'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title=''>
+         9
       </a>
     </li>
   </ul>

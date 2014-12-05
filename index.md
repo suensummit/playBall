@@ -11,24 +11,111 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 --- 
 
-## 說到運動資料的分析，你會想到...
+## 說到運動資料的分析，你會想到的是...
 ![](https://www.ocf.berkeley.edu/~superb/pics/moneyball.jpg)
+
+---
+
+## 還是...？
+
+---
+
+## 實務上，
+
+- MLB
+- NBA
+- NFL
+- World Cup 2014
+- <del>CPBL</del>
+
+別人在上太空，我們還在殺豬公。
 
 ---
 
 ## Sabermatrics：賽伯計量學
 ![](https://bostonu.qualtrics.com/CP/Graphic.php?IM=IM_2h31EGcJG5TEfPf)
 
+Bill James
+
 --- 
 
-## Data Analysis in Sports
-- MLB
-- NBA
-- NFL
-- World Cup 2014
-- ...
+## 前人寫扣，後人乘涼
+
+
+```r
+library(lahman)
+```
+
+```
+## Error in library(lahman): there is no package called 'lahman'
+```
+
+```r
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+## 
+## The following object is masked from 'package:stats':
+## 
+##     filter
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+head(Batting)
+```
+
+```
+## Error in head(Batting): 找不到物件 'Batting'
+```
 
 ---
 
-## 
+## 前人寫扣，後人繼續乘涼
+
+
+```r
+library(pitchRx)
+```
+
+```
+## Error in library(pitchRx): there is no package called 'pitchRx'
+```
+
+---
+
+## 前人寫扣，後人不能一直乘涼
+
+自己的國家自己救
+
+自己的 crawler/analyzer 自己寫！
+
+
+---
+
+## 用Ｒ寫爬蟲的屠龍刀
+
+
+```r
+## RSelenium + phantomJS
+library(XML)
+library(RSelenium)
+
+pJS <- phantom()
+Sys.sleep(5)
+remDr <- remoteDriver(browserName = 'phantomjs')
+remDr$open()
+
+url <- 'http://www.cpbl.com.tw/stats_hr.aspx'
+remDr$navigate(url)
+```
+
+---
+
 
