@@ -42,7 +42,7 @@ Bill James
 ## 前人寫扣，後人乘涼
 
 ```{r}
-library(lahman)
+library(Lahman)
 library(dplyr)
 head(Batting)
 ```

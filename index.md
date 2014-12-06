@@ -43,36 +43,26 @@ Bill James
 
 
 ```r
-library(lahman)
-```
-
-```
-## Error in library(lahman): there is no package called 'lahman'
-```
-
-```r
+library(Lahman)
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 head(Batting)
 ```
 
 ```
-## Error in head(Batting): 找不到物件 'Batting'
+##    playerID yearID stint teamID lgID  G G_batting AB R H X2B X3B HR RBI SB
+## 1 aardsda01   2004     1    SFN   NL 11        11  0 0 0   0   0  0   0  0
+## 2 aardsda01   2006     1    CHN   NL 45        43  2 0 0   0   0  0   0  0
+## 3 aardsda01   2007     1    CHA   AL 25         2  0 0 0   0   0  0   0  0
+## 4 aardsda01   2008     1    BOS   AL 47         5  1 0 0   0   0  0   0  0
+## 5 aardsda01   2009     1    SEA   AL 73         3  0 0 0   0   0  0   0  0
+## 6 aardsda01   2010     1    SEA   AL 53         4  0 0 0   0   0  0   0  0
+##   CS BB SO IBB HBP SH SF GIDP G_old
+## 1  0  0  0   0   0  0  0    0    11
+## 2  0  0  0   0   0  1  0    0    45
+## 3  0  0  0   0   0  0  0    0     2
+## 4  0  0  1   0   0  0  0    0     5
+## 5  0  0  0   0   0  0  0    0    NA
+## 6  0  0  0   0   0  0  0    0    NA
 ```
 
 ---

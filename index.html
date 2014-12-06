@@ -99,31 +99,25 @@
     <h2>前人寫扣，後人乘涼</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">library(lahman)
+    <pre><code class="r">library(Lahman)
+library(dplyr)
+head(Batting)
 </code></pre>
 
-<pre><code>## Error in library(lahman): there is no package called &#39;lahman&#39;
-</code></pre>
-
-<pre><code class="r">library(dplyr)
-</code></pre>
-
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;
-## 
-## The following object is masked from &#39;package:stats&#39;:
-## 
-##     filter
-## 
-## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union
-</code></pre>
-
-<pre><code class="r">head(Batting)
-</code></pre>
-
-<pre><code>## Error in head(Batting): 找不到物件 &#39;Batting&#39;
+<pre><code>##    playerID yearID stint teamID lgID  G G_batting AB R H X2B X3B HR RBI SB
+## 1 aardsda01   2004     1    SFN   NL 11        11  0 0 0   0   0  0   0  0
+## 2 aardsda01   2006     1    CHN   NL 45        43  2 0 0   0   0  0   0  0
+## 3 aardsda01   2007     1    CHA   AL 25         2  0 0 0   0   0  0   0  0
+## 4 aardsda01   2008     1    BOS   AL 47         5  1 0 0   0   0  0   0  0
+## 5 aardsda01   2009     1    SEA   AL 73         3  0 0 0   0   0  0   0  0
+## 6 aardsda01   2010     1    SEA   AL 53         4  0 0 0   0   0  0   0  0
+##   CS BB SO IBB HBP SH SF GIDP G_old
+## 1  0  0  0   0   0  0  0    0    11
+## 2  0  0  0   0   0  1  0    0    45
+## 3  0  0  0   0   0  0  0    0     2
+## 4  0  0  1   0   0  0  0    0     5
+## 5  0  0  0   0   0  0  0    0    NA
+## 6  0  0  0   0   0  0  0    0    NA
 </code></pre>
 
   </article>
