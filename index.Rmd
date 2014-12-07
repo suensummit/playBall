@@ -12,15 +12,16 @@ knit        : slidify::knit2slides
 --- 
 
 ## 說到運動資料的分析，你會想到的是...
+
 ![](https://www.ocf.berkeley.edu/~superb/pics/moneyball.jpg)
 
----
+---{bg: red}
 
 ## 還是...？
 
 ---
 
-## 實務上，
+## 我也是看到報紙才知道（欸
 
 - MLB
 - NBA
@@ -33,9 +34,16 @@ knit        : slidify::knit2slides
 ---
 
 ## Sabermatrics：賽伯計量學
+
 ![](https://bostonu.qualtrics.com/CP/Graphic.php?IM=IM_2h31EGcJG5TEfPf)
 
+歷史
+
+box score
+
 Bill James
+
+edX: Boston U Sabermetric 101
 
 --- 
 
@@ -44,7 +52,7 @@ Bill James
 ```{r}
 library(Lahman)
 library(dplyr)
-head(Batting)
+head(filter(Batting, playerID == "jeterde01"))
 ```
 
 ---
@@ -53,6 +61,12 @@ head(Batting)
 
 ```{r}
 library(pitchRx)
+# 即時抓取MLB Game Day資料
+# 
+
+library(OpenWAR)
+# Open Project for WAR (Win Above Replacement)
+
 ```
 
 ---
@@ -66,7 +80,10 @@ library(pitchRx)
 
 ---
 
-## 用Ｒ寫爬蟲的屠龍刀
+## 第一次用Ｒ寫爬蟲就上手
+
+- [RSelenium]()
+- [phantomJS]()
 
 ```{r, eval=FALSE}
 ## RSelenium + phantomJS
@@ -85,4 +102,43 @@ remDr$navigate(url)
 
 ---
 
+## 資料在手，跟我走！
 
+```{r}
+load("~//Documents//OpenDataProj//sc_tables.RData")
+load("~//Documents//OpenDataProj//hr_tables.RData")
+
+# 賽伯計量學的畢達哥拉斯定理
+win_pc <- function(RS, RA) {
+  perc <- RS^2 / (RS^2 + RA^2) 
+  return(perc)
+}
+```
+
+---
+
+## 用Ｒ畫圖跟你想的不一樣
+
+```{r}
+library(ggplot2)
+```
+
+---
+
+## （並沒有）令十三億人都震驚的事實
+
+
+---
+
+## 想要玩更多分析嗎？來吧，我把資料都放在這裡了，讓我們一起迎接大數據時代！！！
+
+
+---
+
+## 可是瑞凡，我回不去了
+
+還想做更多
+
+---
+
+## 賦歸（國道風光）

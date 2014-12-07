@@ -52,7 +52,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-2" style="background:;">
+<slide class="" id="slide-2" style="background:red;">
   <hgroup>
     <h2>還是...？</h2>
   </hgroup>
@@ -64,7 +64,7 @@
 
 <slide class="" id="slide-3" style="background:;">
   <hgroup>
-    <h2>實務上，</h2>
+    <h2>我也是看到報紙才知道（欸</h2>
   </hgroup>
   <article data-timings="">
     <ul>
@@ -88,7 +88,13 @@
   <article data-timings="">
     <p><img src="https://bostonu.qualtrics.com/CP/Graphic.php?IM=IM_2h31EGcJG5TEfPf" alt=""></p>
 
+<p>歷史</p>
+
+<p>box score</p>
+
 <p>Bill James</p>
+
+<p>edX: Boston U Sabermetric 101</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -101,23 +107,23 @@
   <article data-timings="">
     <pre><code class="r">library(Lahman)
 library(dplyr)
-head(Batting)
+head(filter(Batting, playerID == &quot;jeterde01&quot;))
 </code></pre>
 
-<pre><code>##    playerID yearID stint teamID lgID  G G_batting AB R H X2B X3B HR RBI SB
-## 1 aardsda01   2004     1    SFN   NL 11        11  0 0 0   0   0  0   0  0
-## 2 aardsda01   2006     1    CHN   NL 45        43  2 0 0   0   0  0   0  0
-## 3 aardsda01   2007     1    CHA   AL 25         2  0 0 0   0   0  0   0  0
-## 4 aardsda01   2008     1    BOS   AL 47         5  1 0 0   0   0  0   0  0
-## 5 aardsda01   2009     1    SEA   AL 73         3  0 0 0   0   0  0   0  0
-## 6 aardsda01   2010     1    SEA   AL 53         4  0 0 0   0   0  0   0  0
-##   CS BB SO IBB HBP SH SF GIDP G_old
-## 1  0  0  0   0   0  0  0    0    11
-## 2  0  0  0   0   0  1  0    0    45
-## 3  0  0  0   0   0  0  0    0     2
-## 4  0  0  1   0   0  0  0    0     5
-## 5  0  0  0   0   0  0  0    0    NA
-## 6  0  0  0   0   0  0  0    0    NA
+<pre><code>##    playerID yearID stint teamID lgID   G G_batting  AB   R   H X2B X3B HR
+## 1 jeterde01   1995     1    NYA   AL  15        15  48   5  12   4   1  0
+## 2 jeterde01   1996     1    NYA   AL 157       157 582 104 183  25   6 10
+## 3 jeterde01   1997     1    NYA   AL 159       159 654 116 190  31   7 10
+## 4 jeterde01   1998     1    NYA   AL 149       149 626 127 203  25   8 19
+## 5 jeterde01   1999     1    NYA   AL 158       158 627 134 219  37   9 24
+## 6 jeterde01   2000     1    NYA   AL 148       148 593 119 201  31   4 15
+##   RBI SB CS BB  SO IBB HBP SH SF GIDP G_old
+## 1   7  0  0  3  11   0   0  0  0    0    15
+## 2  78 14  7 48 102   1   9  6  9   13   157
+## 3  70 23 12 74 125   0  10  8  2   14   159
+## 4  84 30  6 57 119   1   5  3  3   13   149
+## 5 102 19  8 91 116   5  12  3  6   12   158
+## 6  73 22  4 68  99   4  12  3  3   14   148
 </code></pre>
 
   </article>
@@ -133,6 +139,18 @@ head(Batting)
 </code></pre>
 
 <pre><code>## Error in library(pitchRx): there is no package called &#39;pitchRx&#39;
+</code></pre>
+
+<pre><code class="r"># 即時抓取MLB Game Day資料
+# 
+
+library(OpenWAR)
+</code></pre>
+
+<pre><code>## Error in library(OpenWAR): there is no package called &#39;OpenWAR&#39;
+</code></pre>
+
+<pre><code class="r"># Open Project for WAR (Win Above Replacement)
 </code></pre>
 
   </article>
@@ -154,10 +172,15 @@ head(Batting)
 
 <slide class="" id="slide-8" style="background:;">
   <hgroup>
-    <h2>用Ｒ寫爬蟲的屠龍刀</h2>
+    <h2>第一次用Ｒ寫爬蟲就上手</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">## RSelenium + phantomJS
+    <ul>
+<li><a href="">RSelenium</a></li>
+<li><a href="">phantomJS</a></li>
+</ul>
+
+<pre><code class="r">## RSelenium + phantomJS
 library(XML)
 library(RSelenium)
 
@@ -175,6 +198,71 @@ remDr$navigate(url)
 </slide>
 
 <slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>資料在手，跟我走！</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">load(&quot;~//Documents//OpenDataProj//sc_tables.RData&quot;)
+load(&quot;~//Documents//OpenDataProj//hr_tables.RData&quot;)
+
+# 賽伯計量學的畢達哥拉斯定理
+win_pc &lt;- function(RS, RA) {
+  perc &lt;- RS^2 / (RS^2 + RA^2) 
+  return(perc)
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>用Ｒ畫圖跟你想的不一樣</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(ggplot2)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>（並沒有）令十三億人都震驚的事實</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>想要玩更多分析嗎？來吧，我把資料都放在這裡了，讓我們一起迎接大數據時代！！！</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>可是瑞凡，我回不去了</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>還想做更多</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>賦歸（國道風光）</h2>
+  </hgroup>
   <article data-timings="">
     
   </article>
@@ -199,7 +287,7 @@ remDr$navigate(url)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='實務上，'>
+        data-slide=3 title='我也是看到報紙才知道（欸'>
          3
       </a>
     </li>
@@ -229,14 +317,44 @@ remDr$navigate(url)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='用Ｒ寫爬蟲的屠龍刀'>
+        data-slide=8 title='第一次用Ｒ寫爬蟲就上手'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title=''>
+        data-slide=9 title='資料在手，跟我走！'>
          9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='用Ｒ畫圖跟你想的不一樣'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='（並沒有）令十三億人都震驚的事實'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='想要玩更多分析嗎？來吧，我把資料都放在這裡了，讓我們一起迎接大數據時代！！！'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='可是瑞凡，我回不去了'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='賦歸（國道風光）'>
+         14
       </a>
     </li>
   </ul>
