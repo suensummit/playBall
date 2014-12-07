@@ -59,6 +59,8 @@ edX: Boston U Sabermetric 101
 
 ## 前人寫扣，後人乘涼
 
+- [Lahman]()
+
 
 ```r
 library(Lahman)
@@ -86,6 +88,9 @@ head(filter(Batting, playerID == "jeterde01"))
 ---
 
 ## 前人寫扣，後人繼續乘涼
+
+- [pitchRx](http://cpsievert.github.io/pitchRx/)
+- [openWAR](https://baseballwithr.wordpress.com/2014/03/17/introduction-to-openwar/)
 
 
 ```r
