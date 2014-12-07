@@ -39,8 +39,6 @@ knit        : slidify::knit2slides
 
 別人在上太空，我們還在殺豬公。
 
-![](http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-play-ball-50.png)
-
 ---
 
 ## Sabermatrics：賽伯計量學
@@ -187,6 +185,7 @@ library(ggplot2)
 
 ## 想要玩更多分析嗎？來吧，我把資料都放在這裡了，讓我們一起迎接大數據時代！！！
 
+![](http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-play-ball-50.png)
 
 ---
 
