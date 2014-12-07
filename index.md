@@ -1,7 +1,7 @@
 ---
 title       : Play Data, Play Ball!
-subtitle    : NYC Data Science Academy - Winter 2015 CORP-R 002
-author      : Summit Suen, Wayne Chen
+subtitle    : NYC Data Science Academy
+author      : Summit Suen + Wayne Chen
 job         : Etu Taiwan
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
@@ -9,15 +9,23 @@ hitheme     : tomorrow      #
 widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
+---
+
+![](assets/img/global_333669892.jpeg) ![](assets/img/etu_logo.png)
+
+# NYC Data Science Academy - Winter 2015
+
+## CORP-R 002: Taiwan Open data and data science
+
+## 臺北國際 OPEN DATA 培訓
+
+
+
 --- 
 
 ## 說到運動資料的分析，你會想到的是...
 
 ![](https://www.ocf.berkeley.edu/~superb/pics/moneyball.jpg)
-
----{bg: red}
-
-## 還是...？
 
 ---
 
@@ -30,6 +38,8 @@ knit        : slidify::knit2slides
 - <del>CPBL</del>
 
 別人在上太空，我們還在殺豬公。
+
+![](http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-play-ball-50.png)
 
 ---
 
@@ -109,13 +119,19 @@ library(OpenWAR)
 
 自己的 crawler/analyzer 自己寫！
 
+---
+
+## 巧婦難為無米之炊：資料哪裡來？
+
+![](assets/img/cpbl_web_snapshot.jpg)
 
 ---
 
+
 ## 第一次用Ｒ寫爬蟲就上手
 
-- [RSelenium]()
-- [phantomJS]()
+- [RSelenium](http://ropensci.github.io/RSelenium/)
+- [phantomJS](http://phantomjs.org/)
 
 
 ```r
