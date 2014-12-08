@@ -1,6 +1,6 @@
 ---
 title       : Play Data, Play Ball!
-subtitle    : NYC Data Science Academy
+subtitle    : Exploring Baseball Data with R
 author      : Summit Suen + Wayne Chen
 job         : Etu Taiwan
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
@@ -36,6 +36,8 @@ knit        : slidify::knit2slides
 - NFL
 - World Cup 2014
 - <del>CPBL</del>
+
+![](assets/img/wc2014.png)
 
 別人在上太空，我們還在殺豬公。
 
