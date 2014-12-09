@@ -131,32 +131,30 @@ head(filter(Batting, playerID == "jeterde01"))
 
 ## 前人寫扣，後人繼續乘涼
 
-- [pitchRx](http://cpsievert.github.io/pitchRx/)
+- [pitchRx](http://cpsievert.github.io/pitchRx/#2D_animation)
+
+
+```r
+install.packages("pitchRx")
+library(pitchRx)
+```
+
+![](assets/img/pitchRx.png)
+
+---
+
+## 前人寫扣，後人繼續乘涼
+
 - [openWAR](https://baseballwithr.wordpress.com/2014/03/17/introduction-to-openwar/)
 
 
 ```r
-library(pitchRx)
+install.packages("Sxslt", repos = "http://www.omegahat.org/R", type = "source")
+require(devtools)
+install_github("openWAR", "beanumber")
 ```
 
-```
-## Error in library(pitchRx): there is no package called 'pitchRx'
-```
-
-```r
-# 即時抓取MLB Game Day資料
-# 
-
-library(OpenWAR)
-```
-
-```
-## Error in library(OpenWAR): there is no package called 'OpenWAR'
-```
-
-```r
-# Open Project for WAR (Win Above Replacement)
-```
+![](assets/img/OpenWAR.png)
 
 ---
 

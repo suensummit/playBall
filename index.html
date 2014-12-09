@@ -202,33 +202,40 @@ head(filter(Batting, playerID == &quot;jeterde01&quot;))
   </hgroup>
   <article data-timings="">
     <ul>
-<li><a href="http://cpsievert.github.io/pitchRx/">pitchRx</a></li>
-<li><a href="https://baseballwithr.wordpress.com/2014/03/17/introduction-to-openwar/">openWAR</a></li>
+<li><a href="http://cpsievert.github.io/pitchRx/#2D_animation">pitchRx</a></li>
 </ul>
 
-<pre><code class="r">library(pitchRx)
+<pre><code class="r">install.packages(&quot;pitchRx&quot;)
+library(pitchRx)
 </code></pre>
 
-<pre><code>## Error in library(pitchRx): there is no package called &#39;pitchRx&#39;
-</code></pre>
-
-<pre><code class="r"># 即時抓取MLB Game Day資料
-# 
-
-library(OpenWAR)
-</code></pre>
-
-<pre><code>## Error in library(OpenWAR): there is no package called &#39;OpenWAR&#39;
-</code></pre>
-
-<pre><code class="r"># Open Project for WAR (Win Above Replacement)
-</code></pre>
+<p><img src="assets/img/pitchRx.png" alt=""></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>前人寫扣，後人繼續乘涼</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="https://baseballwithr.wordpress.com/2014/03/17/introduction-to-openwar/">openWAR</a></li>
+</ul>
+
+<pre><code class="r">install.packages(&quot;Sxslt&quot;, repos = &quot;http://www.omegahat.org/R&quot;, type = &quot;source&quot;)
+require(devtools)
+install_github(&quot;openWAR&quot;, &quot;beanumber&quot;)
+</code></pre>
+
+<p><img src="assets/img/OpenWAR.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
   <hgroup>
     <h2>前人寫扣，後人不能一直乘涼</h2>
   </hgroup>
@@ -241,7 +248,7 @@ library(OpenWAR)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-11" style="background:;">
+<slide class="" id="slide-12" style="background:;">
   <hgroup>
     <h2>巧婦難為無米之炊：資料哪裡來？</h2>
   </hgroup>
@@ -252,7 +259,7 @@ library(OpenWAR)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-12" style="background:;">
+<slide class="" id="slide-13" style="background:;">
   <hgroup>
     <h2>第一次用Ｒ寫爬蟲就上手</h2>
   </hgroup>
@@ -279,7 +286,7 @@ remDr$navigate(url)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-13" style="background:;">
+<slide class="" id="slide-14" style="background:;">
   <hgroup>
     <h2>資料在手，跟我走！</h2>
   </hgroup>
@@ -298,7 +305,7 @@ win_pc &lt;- function(RS, RA) {
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-14" style="background:;">
+<slide class="" id="slide-15" style="background:;">
   <hgroup>
     <h2>用Ｒ畫圖跟你想的不一樣</h2>
   </hgroup>
@@ -310,7 +317,7 @@ win_pc &lt;- function(RS, RA) {
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-15" style="background:;">
+<slide class="" id="slide-16" style="background:;">
   <hgroup>
     <h2>（並沒有）令十三億人都震驚的事實</h2>
   </hgroup>
@@ -320,7 +327,7 @@ win_pc &lt;- function(RS, RA) {
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-16" style="background:;">
+<slide class="" id="slide-17" style="background:;">
   <hgroup>
     <h2>想要玩更多分析嗎？來吧，我把資料都放在這裡了，讓我們一起迎接大數據時代！！！</h2>
   </hgroup>
@@ -331,7 +338,7 @@ win_pc &lt;- function(RS, RA) {
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-17" style="background:;">
+<slide class="" id="slide-18" style="background:;">
   <hgroup>
     <h2>可是瑞凡，我回不去了</h2>
   </hgroup>
@@ -342,7 +349,7 @@ win_pc &lt;- function(RS, RA) {
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-18" style="background:;">
+<slide class="" id="slide-19" style="background:;">
   <hgroup>
     <h2>賦歸（國道風光）</h2>
   </hgroup>
@@ -412,56 +419,62 @@ win_pc &lt;- function(RS, RA) {
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='前人寫扣，後人不能一直乘涼'>
+        data-slide=10 title='前人寫扣，後人繼續乘涼'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='巧婦難為無米之炊：資料哪裡來？'>
+        data-slide=11 title='前人寫扣，後人不能一直乘涼'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='第一次用Ｒ寫爬蟲就上手'>
+        data-slide=12 title='巧婦難為無米之炊：資料哪裡來？'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='資料在手，跟我走！'>
+        data-slide=13 title='第一次用Ｒ寫爬蟲就上手'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='用Ｒ畫圖跟你想的不一樣'>
+        data-slide=14 title='資料在手，跟我走！'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='（並沒有）令十三億人都震驚的事實'>
+        data-slide=15 title='用Ｒ畫圖跟你想的不一樣'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='想要玩更多分析嗎？來吧，我把資料都放在這裡了，讓我們一起迎接大數據時代！！！'>
+        data-slide=16 title='（並沒有）令十三億人都震驚的事實'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='可是瑞凡，我回不去了'>
+        data-slide=17 title='想要玩更多分析嗎？來吧，我把資料都放在這裡了，讓我們一起迎接大數據時代！！！'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='賦歸（國道風光）'>
+        data-slide=18 title='可是瑞凡，我回不去了'>
          18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='賦歸（國道風光）'>
+         19
       </a>
     </li>
   </ul>
