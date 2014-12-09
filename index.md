@@ -65,7 +65,31 @@ edX: Boston U Sabermetric 101
 
 - [Lahman Database](http://lahman.r-forge.r-project.org/)
 
-![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1-1.png) 
+
+```r
+library(Lahman)
+library(dplyr)
+totalRS <- Teams %>% select(yearID, R, G) %>% mutate(AvgRperG = R/G) %>% group_by(yearID) %>% summarise(sum(AvgRperG))
+names(totalRS) <- c("yearID", "RUN")
+```
+
+---
+
+## 前人寫扣，後人乘涼
+
+- [Lahman Database](http://lahman.r-forge.r-project.org/)
+
+
+```r
+library(ggplot2)
+ggplot(data = totalRS, aes(x = yearID, y = RUN)) + stat_smooth() + geom_line()
+```
+
+```
+## geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.
+```
+
+![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2-1.png) 
 
 --- 
 
