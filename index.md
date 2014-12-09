@@ -322,6 +322,4 @@ ggplot(data = win_prob, aes(x = expd, y = real, color = factor(team))) + stat_sm
 
 ## 廣告
 
-謝謝大家 :))
-
 ![](assets/img/TWuseR.png)
