@@ -37,11 +37,17 @@ knit        : slidify::knit2slides
 - World Cup 2014
 - <del>CPBL</del>
 
+---
+
 ![](assets/img/wc2014_01.png)
+
+---
 
 ![](assets/img/wc2014_baidu.png)
 
-別人在上太空，我們還在殺豬公。
+---
+
+## 別人在上太空，我們還在殺豬公。
 
 ---
 
