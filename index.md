@@ -37,7 +37,7 @@ knit        : slidify::knit2slides
 
 ## 我也是看到報紙才知道
 
-![](assets/img/wc2014_baidu.png)
+![](assets/img/wc2014_baidu.jpg)
 
 ---
 
