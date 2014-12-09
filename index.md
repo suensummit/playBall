@@ -172,7 +172,6 @@ install_github("openWAR", "beanumber")
 
 ---
 
-
 ## 第一次用Ｒ寫爬蟲就上手
 
 - [RSelenium](http://ropensci.github.io/RSelenium/)
@@ -191,6 +190,31 @@ remDr$open()
 
 url <- 'http://www.cpbl.com.tw/stats_hr.aspx'
 remDr$navigate(url)
+
+hr_tables <- list()
+```
+
+---
+
+## 第一次用Ｒ寫爬蟲就上手
+
+- [RSelenium](http://ropensci.github.io/RSelenium/)
+- [phantomJS](http://phantomjs.org/)
+
+
+```r
+year <- seq(1990, 2014)
+for (i in 1:length(year)) {
+  option <- remDr$findElement(using = 'xpath', paste0("//*/option[@value = '",year[i],"']"))
+  option$clickElement()
+  src <- option$getPageSource()
+  hr_tables[i] <- readHTMLTable(src[[1]], stringAsFactors = FALSE, encoding = "utf8")
+}
+
+# View(hr_tables)
+
+remDr$close()
+pJS$stop()
 ```
 
 ---
@@ -199,8 +223,52 @@ remDr$navigate(url)
 
 
 ```r
-load("~//Documents//OpenDataProj//sc_tables.RData")
 load("~//Documents//OpenDataProj//hr_tables.RData")
+
+head(hr_tables[[25]])
+```
+
+```
+##   NUMBER YEAR      GID      DATE STADIUM   BATTER  BATTERTEAM  PITCHER
+## 1      # YEAR GAME NO.      DATE STADIUM   PLAYER PLAYER TEAM  PITCHER
+## 2      1 2014        2 2014/3/23    天母 林 威 助    中信兄弟 費 古 洛
+## 3      2 2014        3 2014/3/23  澄清湖 詹 智 堯      Lamigo 林 正 豐
+## 4      3 2014        4 2014/3/25    新莊 張 志 豪    中信兄弟 林 晨 樺
+## 5      4 2014        5 2014/3/26  嘉義市 林 泓 育      Lamigo 林 岳 平
+## 6      5 2014        6 2014/3/27    新莊 張 志 豪    中信兄弟 黃 勝 雄
+##    PITCHERTEAM RBI REMARK
+## 1 PITCHER TEAM RBI REMARK
+## 2 統一7-ELEVEn   1       
+## 3         義大   1       
+## 4         義大   1       
+## 5 統一7-ELEVEn   1       
+## 6         義大   1
+```
+
+---
+
+## 用Ｒ畫圖跟你想的不一樣
+
+
+
+
+```r
+par(family = 'Heiti TC Light')
+m <- ggplot(hr_table, aes(x = as.numeric(GID)))
+m + geom_density(aes(fill = factor(BatterTeam), alpha = 0.01)) + 
+    labs(title = paste0("HR Distribution of ", year[i]," Season 中華職棒", year[i], "賽季逐場全壘打分布")) + 
+    theme(text = element_text(family="Heiti TC Light"), plot.title = element_text(size = 26), legend.text = element_text(size = 20))
+```
+
+![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png) 
+
+---
+
+## 資料在手，繼續走！
+
+
+```r
+load("~//Documents//OpenDataProj//sc_tables.RData")
 
 # 賽伯計量學的畢達哥拉斯定理
 win_pc <- function(RS, RA) {
@@ -209,19 +277,40 @@ win_pc <- function(RS, RA) {
 }
 ```
 
+![](http://upload.wikimedia.org/wikipedia/commons/1/18/Pythagorean_proof.svg)
+
 ---
 
-## 用Ｒ畫圖跟你想的不一樣
+## 用Ｒ畫圖跟你想的不一樣趴兔
+
+
 
 
 ```r
-library(ggplot2)
+levels(win_prob$team)
 ```
+
+```
+## [1] "統一7-ELEVEn" "義大"         "中信兄弟"     "Lamigo"
+```
+
+```r
+# fig <- ggplot(data = win_prob, aes(x = team, y = real, fill = factor(half)))
+# fig + geom_bar(stat = "identity", position="dodge")
+ggplot(data = win_prob, aes(x = expd, y = real, color = factor(team))) + stat_smooth() + geom_point() + coord_fixed()
+```
+
+```
+## geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.
+```
+
+![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13-1.png) 
 
 ---
 
 ## （並沒有）令十三億人都震驚的事實
 
+![](http://i1294.photobucket.com/albums/b618/fhoneck/Value_Howard_Trout_zps64c30bff.png) [example](http://www.fangraphs.com/community/2014s-most-underpaid-and-overpaid-hitters/)
 
 ---
 
@@ -231,10 +320,8 @@ library(ggplot2)
 
 ---
 
-## 可是瑞凡，我回不去了
-
-還想做更多
-
----
-
 ## 賦歸（國道風光）
+
+謝謝大家 :))
+
+![](http://www.freeway.gov.tw/Upload/201008/%E5%9C%8B%E9%81%931%E8%99%9F%E5%8D%97%E4%B8%8B%E7%8E%8B%E7%94%B0%E4%BA%A4%E6%B5%81%E9%81%93%E5%8D%97%E4%B8%8B%E5%88%86%E9%9B%A2%E5%8D%97%E7%AB%AF.jpg)
