@@ -31,16 +31,6 @@ knit        : slidify::knit2slides
 
 ## 我也是看到報紙才知道（欸
 
-- MLB
-- NBA
-- NFL
-- World Cup 2014
-- <del>CPBL</del>
-
----
-
-## 我也是看到報紙才知道
-
 ![](assets/img/wc2014_01.png)
 
 ---
@@ -50,6 +40,12 @@ knit        : slidify::knit2slides
 ![](assets/img/wc2014_baidu.png)
 
 ---
+
+- MLB
+- NBA
+- NFL
+- World Cup 2014
+- <del>CPBL</del>
 
 ## 別人在上太空，我們還在殺豬公。
 
