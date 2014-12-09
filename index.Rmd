@@ -181,7 +181,7 @@ pJS$stop()
 ## 資料在手，跟我走！
 
 ```{r}
-load("~//Documents//OpenDataProj//hr_tables.RData")
+load("hr_tables.RData")
 
 head(hr_tables[[25]])
 
@@ -217,7 +217,7 @@ m + geom_density(aes(fill = factor(BatterTeam), alpha = 0.01)) +
 ## 資料在手，繼續走！
 
 ```{r}
-load("~//Documents//OpenDataProj//sc_tables.RData")
+load("sc_tables.RData")
 
 # 賽伯計量學的畢達哥拉斯定理
 win_pc <- function(RS, RA) {
