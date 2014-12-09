@@ -34,13 +34,13 @@ img {
 
 --- 
 
-## 我也是看到報紙才知道（誤
+## 我也是看報紙才知道（誤
 
 ![](assets/img/wc2014_01.png)
 
 ---
 
-## 我也是看到報紙才知道（誤
+## 我也是看報紙才知道（誤
 
 ![](assets/img/wc2014_baidu.jpg)
 
@@ -156,13 +156,13 @@ install_github("openWAR", "beanumber")
 
 ![](assets/img/OpenWAR.png)
 
----
+--- {bg: red}
 
-## 前人寫扣，後人不能一直乘涼
+## 前人寫扣，後人不能一直乘涼！
 
-自己的國家自己救
+<br><del>自己的國家自己救</del></br>
 
-自己的 crawler/analyzer 自己寫！
+<br>自己的 crawler/analyzer 自己寫！</br>
 
 ---
 
