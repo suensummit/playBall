@@ -74,8 +74,8 @@ totalRA <- Teams %>% select(yearID, RA) %>% group_by(yearID) %>% summarise(sum(R
 names(totalRA) <- c("yearID", "RUN", "TYPE")
 yearsSC <- rbind(totalRS, totalRA)
 library(ggplot2)
-#qplot(x = yearsSC$yearID, y = yearsSC$RUN, color = factor(yearsSC$TYPE))
-fig <- ggplot(data = yearsSC, aes(x = yearID, y = RUN, color = factor(TYPE))) + geom_line()
+qplot(x = yearsSC$yearID, y = yearsSC$RUN, color = factor(yearsSC$TYPE))
+#fig <- ggplot(data = yearsSC, aes(x = yearID, y = RUN, color = factor(TYPE))) + geom_line()
 ```
 
 --- 
