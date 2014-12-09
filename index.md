@@ -320,8 +320,8 @@ ggplot(data = win_prob, aes(x = expd, y = real, color = factor(team))) + stat_sm
 
 ---
 
-## 賦歸（國道風光）
+## 廣告
 
 謝謝大家 :))
 
-![](http://www.freeway.gov.tw/Upload/201008/%E5%9C%8B%E9%81%931%E8%99%9F%E5%8D%97%E4%B8%8B%E7%8E%8B%E7%94%B0%E4%BA%A4%E6%B5%81%E9%81%93%E5%8D%97%E4%B8%8B%E5%88%86%E9%9B%A2%E5%8D%97%E7%AB%AF.jpg)
+![](asset/img/TWuseR.png)
