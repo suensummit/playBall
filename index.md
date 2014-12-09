@@ -19,43 +19,36 @@ knit        : slidify::knit2slides
 
 ## 臺北國際 OPEN DATA 培訓
 
+---
+<!-- Limit image width and height -->
+<style type='text/css'>
+img {
+    max-height: 560px;
+    max-width: 964px;
+}
+</style>
 
-
---- 
-
-## 說到運動資料的分析，你會想到的是...
+## 說到運動資料的分析，你會想到...
 
 ![](https://www.ocf.berkeley.edu/~superb/pics/moneyball.jpg)
 
----
+--- 
 
-## 我也是看到報紙才知道（欸
+## 我也是看到報紙才知道（誤
 
 ![](assets/img/wc2014_01.png)
 
 ---
 
-## 我也是看到報紙才知道
+## 我也是看到報紙才知道（誤
 
 ![](assets/img/wc2014_baidu.jpg)
-
----
-
-- MLB
-- NBA
-- NFL
-- World Cup 2014
-- <del>CPBL</del>
-
-## 別人在上太空，我們還在殺豬公。
 
 ---
 
 ## Sabermatrics：賽伯計量學
 
 ![](https://bostonu.qualtrics.com/CP/Graphic.php?IM=IM_2h31EGcJG5TEfPf)
-
-edX: Boston U Sabermetric 101
 
 ![](assets/img/sabr_history.png)
 
@@ -71,6 +64,19 @@ library(Lahman)
 library(dplyr)
 totalRS <- Teams %>% select(yearID, R, G) %>% mutate(AvgRperG = R/G) %>% group_by(yearID) %>% summarise(sum(AvgRperG))
 names(totalRS) <- c("yearID", "RUN")
+head(totalRS)
+```
+
+```
+## Source: local data frame [6 x 2]
+## 
+##   yearID      RUN
+## 1   1871 93.12897
+## 2   1872 95.21474
+## 3   1873 73.15998
+## 4   1874 58.55903
+## 5   1875 70.08774
+## 6   1876 47.01267
 ```
 
 ---
