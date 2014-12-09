@@ -57,7 +57,7 @@ knit        : slidify::knit2slides
 
 歷史
 
-```{r, echo=FALSE}
+```{r}
 library(Lahman)
 library(dplyr)
 totalRS <- Teams %>% select(yearID, R) %>% group_by(yearID) %>% summarise(sum(R)) %>% mutate("RS")

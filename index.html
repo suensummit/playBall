@@ -113,6 +113,18 @@
 
 <p>歷史</p>
 
+<pre><code class="r">library(Lahman)
+library(dplyr)
+totalRS &lt;- Teams %&gt;% select(yearID, R) %&gt;% group_by(yearID) %&gt;% summarise(sum(R)) %&gt;% mutate(&quot;RS&quot;)
+names(totalRS) &lt;- c(&quot;yearID&quot;, &quot;RUN&quot;, &quot;TYPE&quot;)
+totalRA &lt;- Teams %&gt;% select(yearID, RA) %&gt;% group_by(yearID) %&gt;% summarise(sum(RA)) %&gt;% mutate(&quot;RA&quot;)
+names(totalRA) &lt;- c(&quot;yearID&quot;, &quot;RUN&quot;, &quot;TYPE&quot;)
+yearsSC &lt;- rbind(totalRS, totalRA)
+library(ggplot2)
+#qplot(x = yearsSC$yearID, y = yearsSC$RUN, color = factor(yearsSC$TYPE))
+fig &lt;- ggplot(data = yearsSC, aes(x = yearID, y = RUN, color = factor(TYPE))) + geom_line()
+</code></pre>
+
 <p>box score</p>
 
 <p>Bill James</p>
