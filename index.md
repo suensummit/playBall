@@ -57,6 +57,7 @@ knit        : slidify::knit2slides
 
 歷史
 
+
 box score
 
 Bill James
@@ -67,7 +68,7 @@ edX: Boston U Sabermetric 101
 
 ## 前人寫扣，後人乘涼
 
-- [Lahman]()
+- [Lahman Database](http://lahman.r-forge.r-project.org/)
 
 
 ```r
