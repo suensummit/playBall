@@ -39,9 +39,13 @@ knit        : slidify::knit2slides
 
 ---
 
+## 我也是看到報紙才知道
+
 ![](assets/img/wc2014_01.png)
 
 ---
+
+## 我也是看到報紙才知道
 
 ![](assets/img/wc2014_baidu.png)
 
