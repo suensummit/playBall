@@ -65,7 +65,7 @@ edX: Boston U Sabermetric 101
 
 - [Lahman Database](http://lahman.r-forge.r-project.org/)
 
-```{r}
+```{r, echo=FALSE}
 library(Lahman)
 library(dplyr)
 totalRS <- Teams %>% select(yearID, R) %>% group_by(yearID) %>% summarise(sum(R)) %>% mutate("RS")

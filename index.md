@@ -65,24 +65,7 @@ edX: Boston U Sabermetric 101
 
 - [Lahman Database](http://lahman.r-forge.r-project.org/)
 
-
-```r
-library(Lahman)
-library(dplyr)
-totalRS <- Teams %>% select(yearID, R) %>% group_by(yearID) %>% summarise(sum(R)) %>% mutate("RS")
-names(totalRS) <- c("yearID", "RUN", "TYPE")
-totalRA <- Teams %>% select(yearID, RA) %>% group_by(yearID) %>% summarise(sum(RA)) %>% mutate("RA")
-names(totalRA) <- c("yearID", "RUN", "TYPE")
-yearsSC <- rbind(totalRS, totalRA)
-library(ggplot2)
-qplot(x = yearsSC$yearID, y = yearsSC$RUN, color = factor(yearsSC$TYPE))
-```
-
 ![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1-1.png) 
-
-```r
-#fig <- ggplot(data = yearsSC, aes(x = yearID, y = RUN, color = factor(TYPE))) + geom_line()
-```
 
 --- 
 
