@@ -55,7 +55,15 @@ knit        : slidify::knit2slides
 
 ![](https://bostonu.qualtrics.com/CP/Graphic.php?IM=IM_2h31EGcJG5TEfPf)
 
-歷史
+edX: Boston U Sabermetric 101
+
+![](assets/img/sabr_history.png)
+
+---
+
+## 前人寫扣，後人乘涼
+
+- [Lahman Database](http://lahman.r-forge.r-project.org/)
 
 ```{r}
 library(Lahman)
@@ -69,11 +77,6 @@ library(ggplot2)
 #qplot(x = yearsSC$yearID, y = yearsSC$RUN, color = factor(yearsSC$TYPE))
 fig <- ggplot(data = yearsSC, aes(x = yearID, y = RUN, color = factor(TYPE))) + geom_line()
 ```
-box score
-
-Bill James
-
-edX: Boston U Sabermetric 101
 
 --- 
 
