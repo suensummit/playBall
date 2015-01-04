@@ -8,3 +8,7 @@ RJSONIO
 RSelenium
 dplyr
 Lahman
+rpart
+nlme
+mgcv
+devtools

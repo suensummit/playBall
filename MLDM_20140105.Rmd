@@ -1,0 +1,266 @@
+---
+title       : Play Data, Play Ball!
+subtitle    : Exploring Baseball Data with R
+author      : Summit Suen
+job         : Taiwan R User Group
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## 第一頁
+
+---
+<!-- Limit image width and height -->
+<style type='text/css'>
+img {
+    max-height: 560px;
+    max-width: 964px;
+}
+</style>
+
+## 說到運動資料的分析，你會想到...
+
+![](https://www.ocf.berkeley.edu/~superb/pics/moneyball.jpg)
+
+--- 
+
+## 我也是看報紙才知道（誤
+
+![](assets/img/wc2014_01.png)
+
+---
+
+## 我也是看報紙才知道（誤
+
+![](assets/img/wc2014_baidu.jpg)
+
+---
+
+## Sabermatrics：賽伯計量學
+
+![](https://bostonu.qualtrics.com/CP/Graphic.php?IM=IM_2h31EGcJG5TEfPf)
+
+![](assets/img/sabr_history.png)
+
+---
+
+## 前人寫扣，後人乘涼
+
+- [Lahman Database](http://lahman.r-forge.r-project.org/)
+
+```{r}
+library(Lahman)
+library(dplyr)
+totalRS <- Teams %>% select(yearID, R, G) %>% mutate(AvgRperG = R/G) %>% group_by(yearID) %>% summarise(sum(AvgRperG))
+names(totalRS) <- c("yearID", "RUN")
+head(totalRS)
+```
+
+---
+
+## 前人寫扣，後人乘涼
+
+- [Lahman Database](http://lahman.r-forge.r-project.org/)
+
+```{r, fig.width=12, fig.height=4}
+library(ggplot2)
+ggplot(data = totalRS, aes(x = yearID, y = RUN)) + stat_smooth() + geom_line()
+```
+
+--- 
+
+## 前人寫扣，後人乘涼
+
+- [Lahman Database](http://lahman.r-forge.r-project.org/)
+
+```{r}
+library(Lahman)
+library(dplyr)
+head(filter(Batting, playerID == "jeterde01"))
+```
+
+---
+
+## 前人寫扣，後人繼續乘涼
+
+- [pitchRx](http://cpsievert.github.io/pitchRx/#2D_animation)
+
+```{r, eval=FALSE}
+install.packages("pitchRx")
+library(pitchRx)
+```
+
+![](assets/img/pitchRx.png)
+
+---
+
+## 前人寫扣，後人繼續乘涼
+
+- [openWAR](https://baseballwithr.wordpress.com/2014/03/17/introduction-to-openwar/)
+
+```{r, eval=FALSE}
+install.packages("Sxslt", repos = "http://www.omegahat.org/R", type = "source")
+require(devtools)
+install_github("openWAR", "beanumber")
+```
+
+![](assets/img/OpenWAR.png)
+
+--- {bg: red}
+
+## 前人寫扣，後人不能一直乘涼！
+
+<br><del>自己的國家自己救</del></br>
+
+<br>自己的 crawler/analyzer 自己寫！</br>
+
+---
+
+## 巧婦難為無米之炊：資料哪裡來？
+
+![](assets/img/cpbl_web_snapshot.jpg)
+
+---
+
+## 第一次用Ｒ寫爬蟲就上手
+
+- [RSelenium](http://ropensci.github.io/RSelenium/)
+- [phantomJS](http://phantomjs.org/)
+
+```{r, eval=FALSE}
+## RSelenium + phantomJS
+library(XML)
+library(RSelenium)
+
+pJS <- phantom()
+Sys.sleep(5)
+remDr <- remoteDriver(browserName = 'phantomjs')
+remDr$open()
+
+url <- 'http://www.cpbl.com.tw/stats_hr.aspx'
+remDr$navigate(url)
+
+hr_tables <- list()
+
+```
+
+---
+
+## 第一次用Ｒ寫爬蟲就上手
+
+- [RSelenium](http://ropensci.github.io/RSelenium/)
+- [phantomJS](http://phantomjs.org/)
+
+```{r, eval=FALSE}
+year <- seq(1990, 2014)
+for (i in 1:length(year)) {
+  option <- remDr$findElement(using = 'xpath', paste0("//*/option[@value = '",year[i],"']"))
+  option$clickElement()
+  src <- option$getPageSource()
+  hr_tables[i] <- readHTMLTable(src[[1]], stringAsFactors = FALSE, encoding = "utf8")
+}
+
+# View(hr_tables)
+
+remDr$close()
+pJS$stop()
+```
+
+---
+
+## 資料在手，跟我走！
+
+```{r}
+load("hr_tables.RData")
+
+head(hr_tables[[25]])
+
+```
+
+---
+
+## 用Ｒ畫圖跟你想的不一樣
+
+```{r, echo=FALSE}
+library(ggplot2)
+i <- 25
+hr_table <- hr_tables[[i]]
+names2 <- names(hr_table)
+names2[3] <- "GID"
+names2[7] <- "BatterTeam"
+names2[9] <- "PitcherTeam"
+names(hr_table) <- names2
+# head(hr_table)
+```
+
+```{r, fig.width=18, fig.height=6, warning=FALSE}
+par(family = 'Heiti TC Light')
+m <- ggplot(hr_table, aes(x = as.numeric(GID)))
+m + geom_density(aes(fill = factor(BatterTeam), alpha = 0.01)) + 
+    labs(title = paste0("HR Distribution of ", year[i]," Season 中華職棒", year[i], "賽季逐場全壘打分布")) + 
+    theme(text = element_text(family="Heiti TC Light"), plot.title = element_text(size = 26), legend.text = element_text(size = 20))
+
+```
+
+---
+
+## 資料在手，繼續走！
+
+```{r}
+load("sc_tables.RData")
+
+# 賽伯計量學的畢達哥拉斯定理
+win_pc <- function(RS, RA) {
+  perc <- RS^2 / (RS^2 + RA^2) 
+  return(perc)
+}
+```
+
+![](http://upload.wikimedia.org/wikipedia/commons/1/18/Pythagorean_proof.svg)
+
+---
+
+## 用Ｒ畫圖跟你想的不一樣趴兔
+
+```{r, echo=FALSE}
+first_half_expd_wp <- win_pc(RS = sc_2014_1half$RS, RA = sc_2014_1half$RA)
+first_half_real_wp <- sc_2014_1half$WIN / (sc_2014_1half$WIN + sc_2014_1half$TIE + sc_2014_1half$LOSS)
+
+second_half_expd_wp <- win_pc(RS = sc_2014_2half$RS, RA = sc_2014_2half$RA)
+second_half_real_wp <- sc_2014_2half$WIN / (sc_2014_2half$WIN + sc_2014_2half$TIE + sc_2014_2half$LOSS)
+
+expd_wp <- win_pc(RS = sc_2014_full$RS, RA = sc_2014_full$RA)
+real_wp <- sc_2014_full$WIN / (sc_2014_full$WIN + sc_2014_full$TIE + sc_2014_full$LOSS)
+
+win_prob <- data.frame(expd = c(first_half_expd_wp, second_half_expd_wp, expd_wp), real = c(first_half_real_wp, second_half_real_wp, real_wp), half = c("first half", "first half", "first half", "first half", "second half", "second half", "second half", "second half", "full season", "full season", "full season", "full season"), team = c(sc_2014_1half$TEAM, sc_2014_2half$TEAM, sc_2014_full$TEAM))
+levels(win_prob$team) <- levels(sc_2014_full$TEAM)
+```
+
+```{r, fig.width=6, fig.height=3, warning=FALSE}
+levels(win_prob$team)
+# fig <- ggplot(data = win_prob, aes(x = team, y = real, fill = factor(half)))
+# fig + geom_bar(stat = "identity", position="dodge")
+ggplot(data = win_prob, aes(x = expd, y = real, color = factor(team))) + stat_smooth() + geom_point() + coord_fixed()
+```
+
+---
+
+## （並沒有）令十三億人都震驚的事實
+
+![](http://i1294.photobucket.com/albums/b618/fhoneck/Value_Howard_Trout_zps64c30bff.png) [example](http://www.fangraphs.com/community/2014s-most-underpaid-and-overpaid-hitters/)
+
+---
+
+## 想要玩更多分析嗎？來吧，我把資料都放在這裡了，讓我們一起迎接大數據時代！！！
+
+![](http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-play-ball-50.png)
+
+---
+
+## 廣告
+
+![](assets/img/TWuseR.png)

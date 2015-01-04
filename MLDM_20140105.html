@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Play Data, Play Ball!</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Play Data, Play Ball!">
+  <meta name="author" content="Summit Suen">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Play Data, Play Ball!</h1>
+    <h2>Exploring Baseball Data with R</h2>
+    <p>Summit Suen<br/>Taiwan R User Group</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>第一頁</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <article data-timings="">
+    <!-- Limit image width and height -->
+
+<style type='text/css'>
+img {
+    max-height: 560px;
+    max-width: 964px;
+}
+</style>
+
+<h2>說到運動資料的分析，你會想到...</h2>
+
+<p><img src="https://www.ocf.berkeley.edu/%7Esuperb/pics/moneyball.jpg" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>我也是看報紙才知道（誤</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/wc2014_01.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>我也是看報紙才知道（誤</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/wc2014_baidu.jpg" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Sabermatrics：賽伯計量學</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="https://bostonu.qualtrics.com/CP/Graphic.php?IM=IM_2h31EGcJG5TEfPf" alt=""></p>
+
+<p><img src="assets/img/sabr_history.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>前人寫扣，後人乘涼</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="http://lahman.r-forge.r-project.org/">Lahman Database</a></li>
+</ul>
+
+<pre><code class="r">library(Lahman)
+library(dplyr)
+totalRS &lt;- Teams %&gt;% select(yearID, R, G) %&gt;% mutate(AvgRperG = R/G) %&gt;% group_by(yearID) %&gt;% summarise(sum(AvgRperG))
+names(totalRS) &lt;- c(&quot;yearID&quot;, &quot;RUN&quot;)
+head(totalRS)
+</code></pre>
+
+<pre><code>## Source: local data frame [6 x 2]
+## 
+##   yearID      RUN
+## 1   1871 93.12897
+## 2   1872 95.21474
+## 3   1873 73.15998
+## 4   1874 58.55903
+## 5   1875 70.08774
+## 6   1876 47.01267
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>前人寫扣，後人乘涼</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="http://lahman.r-forge.r-project.org/">Lahman Database</a></li>
+</ul>
+
+<pre><code class="r">library(ggplot2)
+ggplot(data = totalRS, aes(x = yearID, y = RUN)) + stat_smooth() + geom_line()
+</code></pre>
+
+<pre><code>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>前人寫扣，後人乘涼</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="http://lahman.r-forge.r-project.org/">Lahman Database</a></li>
+</ul>
+
+<pre><code class="r">library(Lahman)
+library(dplyr)
+head(filter(Batting, playerID == &quot;jeterde01&quot;))
+</code></pre>
+
+<pre><code>##    playerID yearID stint teamID lgID   G G_batting  AB   R   H X2B X3B HR
+## 1 jeterde01   1995     1    NYA   AL  15        15  48   5  12   4   1  0
+## 2 jeterde01   1996     1    NYA   AL 157       157 582 104 183  25   6 10
+## 3 jeterde01   1997     1    NYA   AL 159       159 654 116 190  31   7 10
+## 4 jeterde01   1998     1    NYA   AL 149       149 626 127 203  25   8 19
+## 5 jeterde01   1999     1    NYA   AL 158       158 627 134 219  37   9 24
+## 6 jeterde01   2000     1    NYA   AL 148       148 593 119 201  31   4 15
+##   RBI SB CS BB  SO IBB HBP SH SF GIDP G_old
+## 1   7  0  0  3  11   0   0  0  0    0    15
+## 2  78 14  7 48 102   1   9  6  9   13   157
+## 3  70 23 12 74 125   0  10  8  2   14   159
+## 4  84 30  6 57 119   1   5  3  3   13   149
+## 5 102 19  8 91 116   5  12  3  6   12   158
+## 6  73 22  4 68  99   4  12  3  3   14   148
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>前人寫扣，後人繼續乘涼</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="http://cpsievert.github.io/pitchRx/#2D_animation">pitchRx</a></li>
+</ul>
+
+<pre><code class="r">install.packages(&quot;pitchRx&quot;)
+library(pitchRx)
+</code></pre>
+
+<p><img src="assets/img/pitchRx.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>前人寫扣，後人繼續乘涼</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="https://baseballwithr.wordpress.com/2014/03/17/introduction-to-openwar/">openWAR</a></li>
+</ul>
+
+<pre><code class="r">install.packages(&quot;Sxslt&quot;, repos = &quot;http://www.omegahat.org/R&quot;, type = &quot;source&quot;)
+require(devtools)
+install_github(&quot;openWAR&quot;, &quot;beanumber&quot;)
+</code></pre>
+
+<p><img src="assets/img/OpenWAR.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:red;">
+  <hgroup>
+    <h2>前人寫扣，後人不能一直乘涼！</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><br><del>自己的國家自己救</del></br></p>
+
+<p><br>自己的 crawler/analyzer 自己寫！</br></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>巧婦難為無米之炊：資料哪裡來？</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/cpbl_web_snapshot.jpg" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>第一次用Ｒ寫爬蟲就上手</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="http://ropensci.github.io/RSelenium/">RSelenium</a></li>
+<li><a href="http://phantomjs.org/">phantomJS</a></li>
+</ul>
+
+<pre><code class="r">## RSelenium + phantomJS
+library(XML)
+library(RSelenium)
+
+pJS &lt;- phantom()
+Sys.sleep(5)
+remDr &lt;- remoteDriver(browserName = &#39;phantomjs&#39;)
+remDr$open()
+
+url &lt;- &#39;http://www.cpbl.com.tw/stats_hr.aspx&#39;
+remDr$navigate(url)
+
+hr_tables &lt;- list()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>第一次用Ｒ寫爬蟲就上手</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="http://ropensci.github.io/RSelenium/">RSelenium</a></li>
+<li><a href="http://phantomjs.org/">phantomJS</a></li>
+</ul>
+
+<pre><code class="r">year &lt;- seq(1990, 2014)
+for (i in 1:length(year)) {
+  option &lt;- remDr$findElement(using = &#39;xpath&#39;, paste0(&quot;//*/option[@value = &#39;&quot;,year[i],&quot;&#39;]&quot;))
+  option$clickElement()
+  src &lt;- option$getPageSource()
+  hr_tables[i] &lt;- readHTMLTable(src[[1]], stringAsFactors = FALSE, encoding = &quot;utf8&quot;)
+}
+
+# View(hr_tables)
+
+remDr$close()
+pJS$stop()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>資料在手，跟我走！</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">load(&quot;hr_tables.RData&quot;)
+
+head(hr_tables[[25]])
+</code></pre>
+
+<pre><code>##   NUMBER YEAR      GID      DATE STADIUM   BATTER  BATTERTEAM  PITCHER
+## 1      # YEAR GAME NO.      DATE STADIUM   PLAYER PLAYER TEAM  PITCHER
+## 2      1 2014        2 2014/3/23    天母 林 威 助    中信兄弟 費 古 洛
+## 3      2 2014        3 2014/3/23  澄清湖 詹 智 堯      Lamigo 林 正 豐
+## 4      3 2014        4 2014/3/25    新莊 張 志 豪    中信兄弟 林 晨 樺
+## 5      4 2014        5 2014/3/26  嘉義市 林 泓 育      Lamigo 林 岳 平
+## 6      5 2014        6 2014/3/27    新莊 張 志 豪    中信兄弟 黃 勝 雄
+##    PITCHERTEAM RBI REMARK
+## 1 PITCHER TEAM RBI REMARK
+## 2 統一7-ELEVEn   1       
+## 3         義大   1       
+## 4         義大   1       
+## 5 統一7-ELEVEn   1       
+## 6         義大   1
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>用Ｒ畫圖跟你想的不一樣</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">par(family = &#39;Heiti TC Light&#39;)
+m &lt;- ggplot(hr_table, aes(x = as.numeric(GID)))
+m + geom_density(aes(fill = factor(BatterTeam), alpha = 0.01)) + 
+    labs(title = paste0(&quot;HR Distribution of &quot;, year[i],&quot; Season 中華職棒&quot;, year[i], &quot;賽季逐場全壘打分布&quot;)) + 
+    theme(text = element_text(family=&quot;Heiti TC Light&quot;), plot.title = element_text(size = 26), legend.text = element_text(size = 20))
+</code></pre>
+
+<pre><code>## Error in paste0(&quot;HR Distribution of &quot;, year[i], &quot; Season 中華職棒&quot;, : object &#39;year&#39; not found
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>資料在手，繼續走！</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">load(&quot;sc_tables.RData&quot;)
+
+# 賽伯計量學的畢達哥拉斯定理
+win_pc &lt;- function(RS, RA) {
+  perc &lt;- RS^2 / (RS^2 + RA^2) 
+  return(perc)
+}
+</code></pre>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/1/18/Pythagorean_proof.svg" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>用Ｒ畫圖跟你想的不一樣趴兔</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">levels(win_prob$team)
+</code></pre>
+
+<pre><code>## [1] &quot;統一7-ELEVEn&quot; &quot;義大&quot;         &quot;中信兄弟&quot;     &quot;Lamigo&quot;
+</code></pre>
+
+<pre><code class="r"># fig &lt;- ggplot(data = win_prob, aes(x = team, y = real, fill = factor(half)))
+# fig + geom_bar(stat = &quot;identity&quot;, position=&quot;dodge&quot;)
+ggplot(data = win_prob, aes(x = expd, y = real, color = factor(team))) + stat_smooth() + geom_point() + coord_fixed()
+</code></pre>
+
+<pre><code>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>（並沒有）令十三億人都震驚的事實</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="http://i1294.photobucket.com/albums/b618/fhoneck/Value_Howard_Trout_zps64c30bff.png" alt=""> <a href="http://www.fangraphs.com/community/2014s-most-underpaid-and-overpaid-hitters/">example</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>想要玩更多分析嗎？來吧，我把資料都放在這裡了，讓我們一起迎接大數據時代！！！</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-play-ball-50.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>廣告</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/TWuseR.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='第一頁'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title=''>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='我也是看報紙才知道（誤'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='我也是看報紙才知道（誤'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Sabermatrics：賽伯計量學'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='前人寫扣，後人乘涼'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='前人寫扣，後人乘涼'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='前人寫扣，後人乘涼'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='前人寫扣，後人繼續乘涼'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='前人寫扣，後人繼續乘涼'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='前人寫扣，後人不能一直乘涼！'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='巧婦難為無米之炊：資料哪裡來？'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='第一次用Ｒ寫爬蟲就上手'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='第一次用Ｒ寫爬蟲就上手'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='資料在手，跟我走！'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='用Ｒ畫圖跟你想的不一樣'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='資料在手，繼續走！'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='用Ｒ畫圖跟你想的不一樣趴兔'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='（並沒有）令十三億人都震驚的事實'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='想要玩更多分析嗎？來吧，我把資料都放在這裡了，讓我們一起迎接大數據時代！！！'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='廣告'>
+         21
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
